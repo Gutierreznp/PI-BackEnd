@@ -1,11 +1,12 @@
+require("dotenv").config();
 const axios = require("axios");
 const server = require("./src/server");
 const { conn } = require('./src/db.js');
-const PORT = 3001;
+const {DB_PORT} = process.env;
 const {Country} = require('./src/db');
 
 conn.sync({ force: true }).then(() => {
-server.listen(PORT, async () => {
+server.listen(DB_PORT, async () => {
   const allCountries = await Country.findAll();
   if (!allCountries.length) {
     const response = await axios(`http://localhost:5000/countries`);
@@ -22,6 +23,6 @@ server.listen(PORT, async () => {
     })
     await Country.bulkCreate(countriesDB);
   }
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${DB_PORT}`);
 })
 }).catch(error => console.error(error))
