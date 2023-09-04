@@ -6,7 +6,7 @@ const port = process.env.PORT || 3001;
 const {Country} = require('./src/db');
 
 conn.sync({ force: true }).then(() => {
-server.listen(PORT, "0.0.0.0", async () => {
+server.listen(port, "0.0.0.0", async () => {
   const allCountries = await Country.findAll();
   if (!allCountries.length) {
     const response = await axios(`http://localhost:5000/countries`);
@@ -23,6 +23,6 @@ server.listen(PORT, "0.0.0.0", async () => {
     })
     await Country.bulkCreate(countriesDB);
   }
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${port}`);
 })
 }).catch(error => console.error(error))
