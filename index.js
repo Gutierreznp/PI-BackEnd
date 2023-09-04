@@ -6,7 +6,7 @@ const {DB_PORT} = process.env;
 const {Country} = require('./src/db');
 
 conn.sync({ force: true }).then(() => {
-server.listen(DB_PORT, async () => {
+server.listen(DB_PORT, "0.0.0.0", async () => {
   const allCountries = await Country.findAll();
   if (!allCountries.length) {
     const response = await axios(`http://localhost:5000/countries`);
