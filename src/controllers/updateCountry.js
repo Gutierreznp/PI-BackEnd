@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
 
     const country = await Country.findByPk(id);
 
-    if(!country) return res.status(404).json({message: 'Pais no encontrado'});
+    if(!country) return res.status(404).json({message: 'Pais no encontrado!'});
 
     if(capital) {
         country.capital = capital;
@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
     }
     await country.save();
 
-    return res.status(200).json({ message: 'Pais actualizado', country });
+    return res.status(200).json({ message: 'Pais actualizado!', country });
   } catch (error) {
     return res.status(400).send(error.message);
   }

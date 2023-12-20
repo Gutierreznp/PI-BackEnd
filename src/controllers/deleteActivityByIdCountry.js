@@ -8,11 +8,11 @@ module.exports = async (req, res) => {
         
         const activity = await Activity.findByPk(idActivity);
 
-        if(!country || !activity) return res.status(404).json({error: 'Country or activity not found'});
+        if(!country || !activity) return res.status(404).json({error: 'Country or activity not found!'});
 
         const countryActivity = await country_activity.findOne({ where: {CountryId: idPais, ActivityId: idActivity}});
 
-        if(!countryActivity) return res.status(404).json({error: 'Activity does not exist in this country'});
+        if(!countryActivity) return res.status(404).json({error: 'Activity does not exist in this country!'});
 
         await countryActivity.destroy();
 

@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
             const countries = await Country.findAll({ where: { id: countryId }});
             await activity.setCountries(countries);   
         }
-        return res.status(200).json({message: 'Activity created successfully', activity});
+        return res.status(200).json({message: 'Activity created successfully!', activity});
     } catch (error) {
         return res.status(500).json({error: error.message});
     }
